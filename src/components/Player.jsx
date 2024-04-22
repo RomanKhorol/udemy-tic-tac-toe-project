@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  handlePlayerAdd,
+}) {
   const [playerName, setPlaerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -9,6 +14,9 @@ export default function Player({ initialName, symbol, isActive }) {
   }
   function addPlayer() {
     setIsEditing((prevIsEditing) => !prevIsEditing);
+    if (isEditing) {
+      handlePlayerAdd(symbol, playerName);
+    }
   }
   let playerNameTitle = <span className="player-name">{playerName}</span>;
   let btnCaption = "Edit";
